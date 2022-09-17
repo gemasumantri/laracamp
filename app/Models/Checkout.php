@@ -15,6 +15,6 @@ class Checkout extends Model
         'card_number',
         'expired',
         'cvc',
-        'is_paid',
-    ]
+        'is_paid'
+    ];
 }
