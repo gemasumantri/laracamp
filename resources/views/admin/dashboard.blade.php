@@ -17,30 +17,18 @@
                                     <th>Price</th>
                                     <th>Register Data</th>
                                     <th>Paid Status</th>
-                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse ($checkouts as $checkout)
                                     <tr>
+                                        <td>{{ $checkout->User->name }}</td>
+                                        <td>{{ $checkout->Camp->title }}</td>
+                                        <td>{{ $checkout->Camp->price }} K</td>
+                                        <td>{{ $checkout->created_at->format('M d Y') }}</td>
+                                        
                                         <td>
-                                            {{ $checkout->User->name }}
-                                        </td>
-                                        <td>
-                                            {{ $checkout->Camp->title }}
-                                        </td>
-                                        <td>
-                                            {{ $checkout->Camp->price }} K
-                                        </td>
-                                        <td>
-                                            {{ $checkout->created_at->format('M d Y') }}
-                                        </td>
-                                        <td>
-                                            @if ($checkout->is_paid)
-                                                <span class="badge bg-success">Paid</span>
-                                            @else
-                                                <span class="badge bg-warning">Waiting</span>
-                                            @endif
+                                            <strong>{{ $checkout->payment_status }}</strong>
                                         </td>
                                         <td>
                                             @if (!$checkout->is_paid)
