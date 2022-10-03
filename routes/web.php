@@ -24,9 +24,13 @@ Route::get('/', function () {
 
 
     
-//socialite routes
+// socialite routes
 Route::get('sign-in-google', [UserController::class, 'google'])->name('user.login.google');
 Route::get('auth/google/callback', [UserController::class, 'handleProviderCallback'])->name('user.google.callback');
+
+// midtrans routes
+Route::get('payment/success', 'midtransCallback');
+Route::post('payment/success', 'midtransCallback');
 
 Route::middleware(['auth'])->group(function () {
     //checkout routes
