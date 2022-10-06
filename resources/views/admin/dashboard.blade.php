@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-8 offset-2">
-                <div class="card">
+                <div class="card mt-3">
                     <div class="card-header">
                         My Camps
                     </div>
@@ -24,19 +24,17 @@
                                     <tr>
                                         <td>{{ $checkout->User->name }}</td>
                                         <td>{{ $checkout->Camp->title }}</td>
-                                        <td>{{ $checkout->Camp->price }} K</td>
+                                        <td>
+                                            Rp. {{ $checkout->total }}
+                                            
+                                            @if ($checkout->discount_id)
+                                                <span class="badge bg-success">Disc {{$checkout->discount_percentage}}%</span>
+                                            @endif
+                                        </td>
                                         <td>{{ $checkout->created_at->format('M d Y') }}</td>
                                         
                                         <td>
                                             <strong>{{ $checkout->payment_status }}</strong>
-                                        </td>
-                                        <td>
-                                            @if (!$checkout->is_paid)
-                                                <form action="{{ route('admin.checkout.update', $checkout->id) }}" method="post">
-                                                    @csrf
-                                                    <button class="btn btn-primary btn-sm">Set to Paid</button>
-                                                </form>
-                                            @endif
                                         </td>
                                     </tr>
                                 @empty
